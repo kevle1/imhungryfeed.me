@@ -1,0 +1,35 @@
+$primary-color: #FA4B0C;
+
+body {
+    margin: 0;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+@font-face {
+    font-family: cby;
+    src: url(../fonts/cby-blk.woff2);
+}
+
+.heading {
+    font-family: 'cby', sans-serif;
+    font-size: 36pt;
+
+    color: $primary-color;
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+::selection {
+    color: white;
+    background: $primary-color;
+}
+
+::-moz-selection {
+    color: white;
+    background: $primary-color;
+}

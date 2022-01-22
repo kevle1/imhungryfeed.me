@@ -1,0 +1,70 @@
+$primary-color: #FA4B0C;
+$text-color: #7b7b7b9f;
+
+.landing {
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 3s; /* Firefox < 16 */
+     -ms-animation: fadein 3s; /* Internet Explorer */
+      -o-animation: fadein 3s; /* Opera < 12.1 */
+         animation: fadein 3s;
+
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform-origin: center center;
+
+    .content {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        position: relative;
+        text-align: center;
+
+        z-index: 10;
+
+        #title {
+            margin-right: 17vw;
+        }
+
+        #emoji_loading {
+            font-size: 38pt;
+            animation: spin 0.75s infinite linear;
+        }
+
+        #credits {
+            margin-left: 3em;
+
+            position: absolute;
+            margin-top: 22em;
+
+            color: $text-color;
+
+            #large {
+                font-size: 12pt;
+            }
+
+            #small {
+                margin-top: 1em;
+
+                font-size: 10pt;
+            }
+        }
+
+        #cat_gif {
+            margin-left: 20vw;
+
+            width: 12em;
+            border-radius: 2em;
+        }
+    }
+}
+
+@keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
