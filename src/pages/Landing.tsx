@@ -1,6 +1,27 @@
+import React, { useEffect, useState } from 'react';
 import '../assets/styles/landing.scss'
+import getLocation, { getLocationTemp } from '../services/location';
+import { useHistory } from "react-router-dom";
 
-function Landing() {
+interface LandingProps {
+  setLocation: ({}) => void
+}
+
+function Landing(props: LandingProps) {
+  let location = null;
+  const history = useHistory()
+
+  useEffect(() => {
+    getLocationTemp() // Switch to getLocation() - used to stop hitting API
+    .then(res => {
+      location = res;
+      console.log(res);
+      history.push('/food')
+      props.setLocation(location)
+
+    });
+  })
+
   return (
     <div className="landing">
       <div className="content">
