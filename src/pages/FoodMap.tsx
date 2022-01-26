@@ -10,44 +10,43 @@ import '../assets/styles/map.scss'
 function Frame() {
   const [loading, setLoading] = useState(true);
 
-
-  useEffect(() => {
-    getLocationTemp() // Switch to getLocation() - used to stop hitting API
-    .then(res => {
-      console.log(res);
-      setLoading(false)
+    useEffect(() => {
+        getLocationTemp() // Switch to getLocation() - used to stop hitting API
+        .then(res => {
+            console.log(res);
+            setLoading(false)
+        });
     });
-  })
 
-  return (
-    <div className="main">
-      <SwitchTransition mode="out-in">
-        <CSSTransition
-          key={loading.toString()}
-          addEndListener={(node, done) => {
-            node.addEventListener("transitionend", done, false);
-          }}
-          classNames="loadingTransition"
-        >
-          {loading ? <Loading/> : <Map/>}
-        </CSSTransition>
-      </SwitchTransition>
-    </div>
-  );
+    return (
+        <div className="main">
+            <SwitchTransition mode="out-in">
+                <CSSTransition
+                key={loading.toString()}
+                addEndListener={(node, done) => {
+                    node.addEventListener("transitionend", done, false);
+                }}
+                classNames="loadingTransition"
+                >
+                    {loading ? <Loading/> : <Map/>}
+                </CSSTransition>
+            </SwitchTransition>
+        </div>
+    );
 }
 
 function Map(){
-  return (
-    <div className="mapFrame">
-      <div className="interaction">
-        {/* Interaction components go here (button, etc) */}
-      </div>
-      <div className="mapContainer">
-      </div>
-      <Button/>
+    return (
+        <div className="mapFrame">
+            <div className="interaction">
+                {/* Interaction components go here (button, etc) */}
+            </div>
+            <div className="mapContainer">
 
-    </div>
-  )
+            </div>
+            <Button/>
+        </div>
+    );
 }
 
 export default Frame;

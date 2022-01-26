@@ -33,7 +33,7 @@ async function getLocationTemp() {
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
 
 export default getLocation;
 export { getLocationTemp };
