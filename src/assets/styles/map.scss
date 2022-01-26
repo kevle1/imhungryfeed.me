@@ -1,0 +1,21 @@
+.mapFrame {
+    height: 100vh;
+    width: 100vw;
+
+    box-sizing: border-box;
+    overflow: auto;
+
+    padding: 2em;
+
+    .interaction {
+        position: absolute;
+    }
+
+    .mapContainer {
+        height: 100%;
+        width: 100%;
+
+        border-radius: 1em;
+        background-color: lightgray;
+    }
+}

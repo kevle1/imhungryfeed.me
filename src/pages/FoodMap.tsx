@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import getLocation, { getLocationTemp } from '../services/location';
-import Loading from '../pages/Loading';
 
-// display landing here and get location info
+import Loading from '../pages/Loading';
+import Button from '../components/FeedMeButton';
+import '../assets/styles/map.scss'
+
 function Frame() {
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     getLocationTemp() // Switch to getLocation() - used to stop hitting API
@@ -18,16 +21,16 @@ function Frame() {
 
   return (
     <div className="main">
-    <SwitchTransition mode="out-in">
-      <CSSTransition
-        key={loading.toString()}
-        addEndListener={(node, done) => {
-          node.addEventListener("transitionend", done, false);
-        }}
-        classNames="loadingTransition"
-      >
-        {loading ? <Loading/> : <Map/>}
-      </CSSTransition>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={loading.toString()}
+          addEndListener={(node, done) => {
+            node.addEventListener("transitionend", done, false);
+          }}
+          classNames="loadingTransition"
+        >
+          {loading ? <Loading/> : <Map/>}
+        </CSSTransition>
       </SwitchTransition>
     </div>
   );
@@ -35,8 +38,14 @@ function Frame() {
 
 function Map(){
   return (
-    <div className="map">
-      <h1>Map!!!!</h1>
+    <div className="mapFrame">
+      <div className="interaction">
+        {/* Interaction components go here (button, etc) */}
+      </div>
+      <div className="mapContainer">
+      </div>
+      <Button/>
+
     </div>
   )
 }
