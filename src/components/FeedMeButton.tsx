@@ -2,7 +2,7 @@ import '../assets/styles/button.scss';
 
 import emojiExplode from '../components/EmojisHandler';
 
-function FeedMeButton() {
+function FeedMeButton() { // TODO: Add a prop for the message on button (str) + loading state (bool)
     return (
         <div id="feedMeBtn"
             className="feedMeBtn"
@@ -14,8 +14,6 @@ function FeedMeButton() {
 
 function feedMeButtonClick() {
     emojiExplode("feedMeBtn");
-
-    // TODO: stuff...
 }
 
 export default FeedMeButton;

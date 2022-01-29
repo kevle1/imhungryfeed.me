@@ -2,10 +2,12 @@ $primary-color: #FA4B0C;
 $secondary-color: #FFFFFF;
 
 .emoji-styles { // Override the crazy z-index (2147483647)
-    z-index: 0 !important;
+    z-index: 5 !important;
 }
 
 .feedMeBtn {
+    z-index: 10;
+
     cursor: pointer;
 
     position: absolute;
