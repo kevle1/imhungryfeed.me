@@ -31,4 +31,23 @@
             }
         }
     }
+
+    .footer {
+        overflow-y: hidden;
+        width: 100%;
+
+        font-size: 8pt;
+        color: rgb(170, 170, 170);
+        position: relative;
+
+        padding-left: 0.8em;
+        padding-top: 0.8em;
+
+        .right {
+            float: right;
+            padding-right: 1.6em;
+
+            white-space: pre;
+        }
+    }
 }

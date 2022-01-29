@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { sleep } from '../services/cooldown';
 
 const IP_REGEX = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/g;
 
@@ -15,13 +16,11 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
             .then((ip_response) => {
                 location = ip_response.data;
             }).catch((ip_error) => {
-                console.log(ip_error);
-                console.log("Error: Could not get IP information.");
+                console.log("Error: Could not get IP information - " + ip_error);
                 return null;
             });
     }).catch((cf_error) => {
-        console.log(cf_error);
-        console.log("Error: Could not get IP.");
+        console.log("Error: Could not get IP - " + cf_error);
         return null;
     });
 
@@ -32,10 +31,6 @@ async function getLocationTemp() : Promise<{ lat: number; lon: number; }> {
     await sleep(1000); // Mock loading
     console.log("called");
     return { lat: -31.9474, lon: 115.8648 };
-}
-
-function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export default getLocation;

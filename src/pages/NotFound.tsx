@@ -1,7 +1,10 @@
+import '../assets/styles/misc.scss';
+
 function NotFound() {
     return (
         <div className="notFound">
-            <h1>Not Found :(</h1>
+            <div className="h1">Not Found :(</div>
+            <img id="sad_cat_gif" src="https://c.tenor.com/U2JqGqBXqZgAAAAM/cat-sad.gif"/>
         </div>
     )
 }

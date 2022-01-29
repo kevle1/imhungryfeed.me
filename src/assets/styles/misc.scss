@@ -1,0 +1,18 @@
+$primary-color: #FA4B0C;
+$secondary-color: #FFFFFF;
+
+.h1 {
+    color: $primary-color;
+
+    font-family: 'cby', sans-serif;
+    font-size: 36pt;
+}
+
+.notFound {
+    padding: 3em;
+
+    #sad_cat_gif {
+        margin-top: 5em;
+        border-radius: 1em;
+    }
+}

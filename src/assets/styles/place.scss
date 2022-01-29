@@ -1,0 +1,66 @@
+$primary-color: #fa4a0a;
+$secondary-color: #5c5c5c;
+
+.placeCard {
+    z-index: 15;
+    position: absolute;
+
+    text-align: left;
+
+    max-width: 25em;
+    min-width: 18em;
+    padding: 0 2em 1em 1em;
+
+    border-bottom-right-radius: 1em;
+
+    background-color: white;
+
+    div {
+        margin-top: 0.1em;
+    }
+
+    a {
+        text-decoration: none;
+
+        :hover {
+            text-decoration: underline;
+        }
+    }
+
+    #arrow {
+        width: 4em;
+        transform: rotate(-100deg);
+
+        margin-top: -3em;
+        float: right;
+    }
+
+    .placeName {
+        color: $primary-color;
+
+        font-family: 'cby', sans-serif;
+        font-size: 32pt;
+    }
+
+    .placeAddress {
+        margin-top: 0.5em;
+        color: gray;
+    }
+
+    .placePrice {
+        color: gray;
+    }
+
+    .placeRating {
+        color: $secondary-color;
+
+        #rating {
+            margin-right: 0.4em;
+        }
+
+        #ratingCount {
+            margin-left: 0.4em;
+            color: lightgray;
+        }
+    }
+}
