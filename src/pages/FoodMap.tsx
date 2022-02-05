@@ -7,11 +7,12 @@ import getLocation, { getLocationTemp } from '../services/location';
 import getPlaces, { Place, PlaceRequest, randomPlace } from '../services/place';
 
 import Loading from '../pages/Loading';
+import Tab from '../components/Tab';
 import Button from '../components/FeedMeButton';
 import PlaceCard from '../components/PlaceCard';
 import FilterPanel from '../components/FilterPanel';
 
-import { placeArrow, placePin } from '../components/MarkerIcon';
+import { placeArrow, placePin, placeTarget } from '../components/MarkerIcon';
 import { sleep, cooldownTime } from '../services/cooldown';
 
 import '../assets/styles/map.scss'
@@ -69,12 +70,12 @@ function Frame() {
 function Map(view: MapView) {
     // Track 3 different points on the map
     const [userLocation, setUserLocation] = useState<[number, number]>(view.location); // Users current location
-    const [viewLocation, setLocation] = useState<[number, number]>(view.location); // Map view location
-    const [marker, setMarker] = useState<[number, number]>([0.0, 0.0]);
+    const [viewLocation, setViewLocation] = useState<[number, number]>(view.location); // Map view location
+    const [placeMarker, setPlaceMarker] = useState<[number, number]>([0.0, 0.0]);
 
     const [mapZoom, setMapZoom] = useState(view.zoom);
 
-    // Currently unused 
+    // Currently unused
     const [buttonMessage] = useState("Feed Me!");
     const [loading, setLoading] = useState(false);
 
@@ -92,20 +93,24 @@ function Map(view: MapView) {
         rating: 3.0
     });
 
+    useEffect(() => {
+        setPlaces(null);
+    }, [request]); // When filters updated, clear places result
+
     async function fetchPlace() {
         if(!loading && !cooldown) {
             setLoading(true);
             setCooldown(true);
 
-            // If non filterable params have changed
-            if (places === null ) { // || paramsChanged
+            if (places === null ) {
                 await getPlaces(request).then((placesResponse) => {
                     if(placesResponse !== null) {
                         setPlaces(placesResponse);
                         displayPlace(placesResponse);
                     }
-                }); // TODO: Handle error
-
+                }).catch((error) =>
+                     alert("Error: Could not get places"));
+                     // TODO: Handle error cleanly
             }
             else {
                 displayPlace(places);
@@ -115,8 +120,6 @@ function Map(view: MapView) {
 
             await sleep(cooldownTime);
             setCooldown(false);
-
-            //setButtonMessage("Again!!");
         }
     }
 
@@ -132,12 +135,10 @@ function Map(view: MapView) {
 
         setCurrentPlace(place);
 
-        setLocation([place.location.lat, place.location.lng]);
-        setMarker([place.location.lat, place.location.lng]);
+        setViewLocation([place.location.lat, place.location.lng]);
+        setPlaceMarker([place.location.lat, place.location.lng]);
         setMapZoom(17.5);
     }
-
-    // TODO: Set parameters
 
     return (
         <div className="mapFrame">
@@ -145,10 +146,12 @@ function Map(view: MapView) {
                 <PlaceCard place={currentPlace!}/> :
                 null }
             <div className="filters">
+                <Tab/>
                 <FilterPanel
                     updateRequest={setRequest}
                     placeRequest={request}
-                    setUserLocation={setUserLocation}/>
+                    setUserLocation={setUserLocation}
+                    setViewLocation={setViewLocation}/>
             </div>
             <div className="mapContainer">
                 <MapContainer center={viewLocation}
@@ -158,9 +161,9 @@ function Map(view: MapView) {
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                     <UpdateView location={viewLocation} zoom={mapZoom} />
 
-                    <Marker position={userLocation} icon={placePin}/>
-                    <Marker position={viewLocation} icon={placePin}/>
-                    <Marker position={marker} icon={placeArrow}/>
+                    <Marker position={userLocation} icon={placeTarget}/>
+                    <Marker position={viewLocation} icon={placeTarget}/>
+                    <Marker position={placeMarker} icon={placeArrow}/>
                 </MapContainer>
 
                 <div className="footer">

@@ -13,7 +13,7 @@ $component-width: 23em;
     padding-left: 2em;
     border-radius: 1em;
 
-    margin-top: 40vh;
+    margin-top: 30vh;
 
     width: $component-width;
 
@@ -88,38 +88,35 @@ $component-width: 23em;
                 border-left: 2.5px solid $intermed-color;
             }
 
-            .locationIcon {
-                z-index: 10;
-                top: 4.6em; // Cursed positioning
-                left: 16.7em;
-                position: absolute;
+            .locationButton {
+                display: inline-flex;
+                align-items: center;
+
+                border-radius: 0.5em;
 
                 cursor: pointer;
-            }
-
-            button {
-                position: absolute;
-                cursor: pointer;
+                width: 24em;
 
                 color: white;
 
                 height: 3.05em;
-                width: 5em;
 
                 border: 2px solid $primary-color;
                 background-color: $primary-color;
 
-                border-top-right-radius: 0.5em;
-                border-bottom-right-radius: 0.5em;
-
-                .searchIcon {
+                .locationIcon {
+                    margin-left: 3em;
                     width: 2em;
                 }
-            }
 
-            // button:hover {
-            //     background-color: $intermed-color;
-            // }
+                #txt {
+                    margin-left: 0.5em;
+
+                    font-family: 'IBM Plex Mono', monospace;
+                    font-weight: 600;
+                    font-size: 11pt;
+                }
+            }
         }
     }
 
@@ -140,4 +137,18 @@ $component-width: 23em;
         border: none;
         border-top: 1px solid lightgray;
     }
+}
+
+.tab {
+    position: absolute;
+    background-color: $primary-color;
+
+    width: 4em;
+    height: 5em;
+
+    z-index: 20;
+    position: absolute;
+
+    top: 0px;
+    right: 24.5em;
 }

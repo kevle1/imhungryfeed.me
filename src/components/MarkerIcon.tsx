@@ -1,5 +1,6 @@
 import markerArrow from '../assets/icons/marker-ol.svg'
-import markerPin from '../assets/icons/target.svg'
+import markerTarget from '../assets/icons/target.svg'
+import markerPin from '../assets/icons/place.svg'
 import L from 'leaflet';
 
 const placeArrow = new L.Icon({
@@ -14,6 +15,18 @@ const placeArrow = new L.Icon({
     className: 'placeMarker'
 });
 
+const placeTarget = new L.Icon({
+    iconUrl: markerTarget,
+    iconRetinaUrl: markerTarget,
+    iconAnchor: undefined,
+    popupAnchor: undefined,
+    shadowUrl: undefined,
+    shadowSize: undefined,
+    shadowAnchor: undefined,
+    iconSize: new L.Point(40, 40),
+    className: 'placeTarget'
+});
+
 const placePin = new L.Icon({
     iconUrl: markerPin,
     iconRetinaUrl: markerPin,
@@ -26,4 +39,4 @@ const placePin = new L.Icon({
     className: 'placePin'
 });
 
-export { placeArrow, placePin };
+export { placeArrow, placeTarget, placePin };

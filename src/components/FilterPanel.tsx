@@ -15,14 +15,35 @@ interface PanelInterface {
     placeRequest: PlaceRequest
     updateRequest: React.Dispatch<React.SetStateAction<PlaceRequest>>
     setUserLocation: React.Dispatch<React.SetStateAction<[number, number]>>
+    setViewLocation: React.Dispatch<React.SetStateAction<[number, number]>>
 }
 
 function FilterPanel(request: PanelInterface) {
     const [locationSource, setLocationSource] = useState("Approximate, based on IP");
 
-    function handleBrowserLocationClick() {
-        getLocationViaBrowser();
-        setLocationSource("Browser Location");
+    async function handleBrowserLocationClick() {
+        setLocationSource("Requesting location...");
+
+        let browserLocation = await getLocationViaBrowser();
+
+        console.log(browserLocation);
+
+        let placeRequest = { ...request.placeRequest };
+
+        if (browserLocation !== null){
+            placeRequest.latitude = browserLocation.coords.latitude;
+            placeRequest.longitude = browserLocation.coords.longitude;
+
+            request.setUserLocation([browserLocation.coords.latitude, browserLocation.coords.longitude]);
+            request.setViewLocation([browserLocation.coords.latitude, browserLocation.coords.longitude]);
+
+            request.updateRequest(placeRequest);
+            setLocationSource("Browser Location");
+        }
+        else {
+            // TODO: Cleaner alert
+            setLocationSource("Couldn't get location");
+        }
     }
 
     function handleLocationSearch() {
@@ -39,13 +60,14 @@ function FilterPanel(request: PanelInterface) {
                 </div>
 
                 <div className="searchBox">
-                    <input></input>
+                    {/* <input></input>
                     <img className="locationIcon"
                         src={locationIcon}
-                        onClick={() => handleBrowserLocationClick()}/>
-                    <button className="searchButton"
-                        onClick={() => handleLocationSearch()}>
-                        <img className="searchIcon" src={searchIcon}/>
+                        onClick={() => handleBrowserLocationClick()}/> */}
+                    <button className="locationButton"
+                        onClick={() => handleBrowserLocationClick()}>
+                        <img className="locationIcon" src={locationIcon}/>
+                        <span id="txt">Get Current Location</span>
                     </button>
                 </div>
             </div>

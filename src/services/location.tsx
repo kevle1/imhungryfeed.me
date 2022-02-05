@@ -27,16 +27,12 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
     return location;
 }
 
-function getLocationViaBrowser() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Got loc");
-
-            return [position.coords.latitude, position.coords.longitude];
-        });
-    }
-
-    // TODO: Handle error
+function getLocationViaBrowser() : Promise<GeolocationPosition> {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            position => resolve(position)
+        );
+    })
 }
 
 async function getLocationTemp() : Promise<{ lat: number; lon: number; }> {
