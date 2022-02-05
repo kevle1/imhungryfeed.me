@@ -6,14 +6,19 @@ $secondary-color: #5c5c5c;
     position: absolute;
 
     text-align: left;
+    // top: 0px; // Use for right alignment
+    // right: 0px;
 
     max-width: 25em;
     min-width: 18em;
+    // padding: 2em 2em 1em 2em; // Use for right alignment
     padding: 0 2em 1em 1em;
 
     border-bottom-right-radius: 1em;
 
     background-color: white;
+
+    animation: slideIn 1s forwards;
 
     div {
         margin-top: 0.1em;
@@ -62,5 +67,14 @@ $secondary-color: #5c5c5c;
             margin-left: 0.4em;
             color: lightgray;
         }
+    }
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(-900px);
+    }
+    100% {
+      transform: translateX(0);
     }
 }

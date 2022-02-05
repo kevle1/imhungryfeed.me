@@ -4,7 +4,7 @@ import L from 'leaflet';
 const icon = new L.Icon({
     iconUrl: markerIcon,
     iconRetinaUrl: markerIcon,
-    iconAnchor: undefined,
+    iconAnchor: new L.Point(30, 80),
     popupAnchor: undefined,
     shadowUrl: undefined,
     shadowSize: undefined,

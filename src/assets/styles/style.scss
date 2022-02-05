@@ -9,8 +9,9 @@ body {
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 
-	font-family: 'IBM Plex Sans', sans-serif;
+	font-family: 'IBM Plex Sans', monospace;
 }
 
 @font-face {

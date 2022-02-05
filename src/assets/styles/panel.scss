@@ -1,0 +1,138 @@
+$primary-color: #fa4a0a;
+$intermed-color: #4b4b4b;
+$intermed-light-color: gray;
+$component-width: 23em;
+
+.filterPanel {
+    z-index: 15;
+    position: absolute;
+    top: 0px; // Use for right alignment
+    right: 0px;
+
+    padding: 1.75em;
+    border-radius: 1em;
+
+    margin-top: 40vh;
+
+    width: $component-width;
+
+    color: $intermed-color;
+    background-color: white;
+
+    font-size: 11pt;
+
+    #subheading {
+        font-weight: 500;
+        letter-spacing: 0.2em;
+    }
+
+    #status {
+        color: $intermed-light-color;
+        font-size: 11pt;
+        float: right;
+        margin-right: 1.5em;
+    }
+
+    .slider {
+        color: $primary-color;
+
+        margin-top: 1em;
+        width: 22em;
+
+        .rc-slider-track {
+            background-color: $primary-color;
+        }
+
+        .rc-slider-handle {
+            // height: 2em;
+            // width: 2em;
+
+            // background-image: url("../icons/location.svg");
+            // background-repeat: no-repeat, repeat;
+            border: solid 2px #ff8153;
+        }
+
+        .rc-slider-handle:hover {
+            border-color: $primary-color;
+        }
+
+        .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+            box-shadow: none;
+            border-color: $primary-color;
+        }
+    }
+
+    .location {
+        width: 100%;
+
+        .searchBox {
+            margin-top: 1em;
+
+            input {
+                width: 17.5em;
+                padding: 0.7em;
+
+                border: 2px solid $primary-color;
+                border-top-left-radius: 0.5em;
+                border-bottom-left-radius: 0.5em;
+
+                font-family: 'IBM Plex Sans', monospace;
+            }
+
+            input:focus {
+                outline: none !important;
+
+                border-top: 2.5px solid $intermed-color;
+                border-bottom: 2.5px solid $intermed-color;
+                border-left: 2.5px solid $intermed-color;
+            }
+
+            .locationIcon {
+                z-index: 10;
+                top: 4.6em; // Cursed positioning
+                left: 16.5em;
+                position: absolute;
+
+                cursor: pointer;
+            }
+
+            button {
+                position: absolute;
+                cursor: pointer;
+
+                color: white;
+
+                height: 3.05em;
+                width: 5em;
+
+                border: 2px solid $primary-color;
+                background-color: $primary-color;
+
+                border-top-right-radius: 0.5em;
+                border-bottom-right-radius: 0.5em;
+
+                .searchIcon {
+                    width: 2em;
+                }
+            }
+        }
+    }
+
+    .priceSlider {
+        margin-top: 1.5em;
+    }
+
+    .ratingSlider {
+        margin-top: 1.5em;
+    }
+
+    .dividingLine {
+        float:left;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+
+        width: 22em;
+        border: none;
+        border-top: 1px solid lightgray;
+    }
+}

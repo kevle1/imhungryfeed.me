@@ -26,12 +26,11 @@ async function getPlaces(request: PlaceRequest) : Promise<[Place] | null> {
     // TODO: Build request payload
     let places = null;
 
-    await axios.post("https://endpoint/food", {request}).then((res) => {
-        places = res.data;
+    await axios.post("http://localhost:5000/api/places",
+        request).then((res) => {
+            places = res.data;
     });
-
-    await sleep(1000);
-
+    
     return places;
 }
 

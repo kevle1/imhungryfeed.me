@@ -1,4 +1,4 @@
-const cooldownTime: number = 4000;
+const cooldownTime: number = 2000;
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));

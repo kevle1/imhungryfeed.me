@@ -9,6 +9,7 @@ import getPlaces, { Place, PlaceRequest, randomPlace } from '../services/place';
 import Loading from '../pages/Loading';
 import Button from '../components/FeedMeButton';
 import PlaceCard from '../components/PlaceCard';
+import FilterPanel from '../components/FilterPanel';
 
 import { icon } from '../components/MarkerIcon';
 import { sleep, cooldownTime } from '../services/cooldown';
@@ -86,7 +87,10 @@ function Map(view: MapView) {
             let request: PlaceRequest = {
                 latitude: -31.9522,
                 longitude: 115.861096,
-                radius: 1500
+                radius: 500,
+                min_price: undefined,
+                max_price: undefined,
+                rating: undefined
             }
 
             // If non filterable params have changed
@@ -96,7 +100,8 @@ function Map(view: MapView) {
                         setPlaces(placesResponse);
                         displayPlace(placesResponse);
                     }
-                });
+                }); // TODO: Handle error
+
             }
             else {
                 displayPlace(places);
@@ -135,6 +140,9 @@ function Map(view: MapView) {
             { currentPlace !== null ?
                 <PlaceCard place={currentPlace!}/> :
                 null }
+            <div className="filters">
+                <FilterPanel/>
+            </div>
             <div className="mapContainer">
                 <MapContainer center={viewLocation}
                     zoom={mapZoom}
