@@ -27,6 +27,18 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
     return location;
 }
 
+function getLocationViaBrowser() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log("Got loc");
+
+            return [position.coords.latitude, position.coords.longitude];
+        });
+    }
+
+    // TODO: Handle error
+}
+
 async function getLocationTemp() : Promise<{ lat: number; lon: number; }> {
     await sleep(1000); // Mock loading
     console.log("called");
@@ -34,4 +46,4 @@ async function getLocationTemp() : Promise<{ lat: number; lon: number; }> {
 }
 
 export default getLocation;
-export { getLocationTemp };
+export { getLocationTemp, getLocationViaBrowser };

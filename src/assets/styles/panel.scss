@@ -10,6 +10,7 @@ $component-width: 23em;
     right: 0px;
 
     padding: 1.75em;
+    padding-left: 2em;
     border-radius: 1em;
 
     margin-top: 40vh;
@@ -90,7 +91,7 @@ $component-width: 23em;
             .locationIcon {
                 z-index: 10;
                 top: 4.6em; // Cursed positioning
-                left: 16.5em;
+                left: 16.7em;
                 position: absolute;
 
                 cursor: pointer;
@@ -115,6 +116,10 @@ $component-width: 23em;
                     width: 2em;
                 }
             }
+
+            // button:hover {
+            //     background-color: $intermed-color;
+            // }
         }
     }
 

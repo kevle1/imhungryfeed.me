@@ -11,7 +11,7 @@ import Button from '../components/FeedMeButton';
 import PlaceCard from '../components/PlaceCard';
 import FilterPanel from '../components/FilterPanel';
 
-import { icon } from '../components/MarkerIcon';
+import { placeArrow, placePin } from '../components/MarkerIcon';
 import { sleep, cooldownTime } from '../services/cooldown';
 
 import '../assets/styles/map.scss'
@@ -67,11 +67,15 @@ function Frame() {
 }
 
 function Map(view: MapView) {
-    const [viewLocation, setViewLocation] = useState<[number, number]>(view.location);
-    const [mapZoom, setMapZoom] = useState(view.zoom);
+    // Track 3 different points on the map
+    const [userLocation, setUserLocation] = useState<[number, number]>(view.location); // Users current location
+    const [viewLocation, setLocation] = useState<[number, number]>(view.location); // Map view location
     const [marker, setMarker] = useState<[number, number]>([0.0, 0.0]);
 
-    const [buttonMessage, setButtonMessage] = useState("Feed Me!");
+    const [mapZoom, setMapZoom] = useState(view.zoom);
+
+    // Currently unused 
+    const [buttonMessage] = useState("Feed Me!");
     const [loading, setLoading] = useState(false);
 
     const [places, setPlaces] = useState<[Place] | null>(null);
@@ -79,19 +83,19 @@ function Map(view: MapView) {
 
     const [cooldown, setCooldown] = useState(false);
 
+    const [request, setRequest] = useState<PlaceRequest>({ // Default values
+        latitude: userLocation[0],
+        longitude: userLocation[1],
+        radius: 400,
+        min_price: 1,
+        max_price: 4,
+        rating: 3.0
+    });
+
     async function fetchPlace() {
         if(!loading && !cooldown) {
             setLoading(true);
             setCooldown(true);
-
-            let request: PlaceRequest = {
-                latitude: -31.9522,
-                longitude: 115.861096,
-                radius: 500,
-                min_price: undefined,
-                max_price: undefined,
-                rating: undefined
-            }
 
             // If non filterable params have changed
             if (places === null ) { // || paramsChanged
@@ -128,7 +132,7 @@ function Map(view: MapView) {
 
         setCurrentPlace(place);
 
-        setViewLocation([place.location.lat, place.location.lng]);
+        setLocation([place.location.lat, place.location.lng]);
         setMarker([place.location.lat, place.location.lng]);
         setMapZoom(17.5);
     }
@@ -141,7 +145,10 @@ function Map(view: MapView) {
                 <PlaceCard place={currentPlace!}/> :
                 null }
             <div className="filters">
-                <FilterPanel/>
+                <FilterPanel
+                    updateRequest={setRequest}
+                    placeRequest={request}
+                    setUserLocation={setUserLocation}/>
             </div>
             <div className="mapContainer">
                 <MapContainer center={viewLocation}
@@ -150,7 +157,10 @@ function Map(view: MapView) {
                     scrollWheelZoom={true}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                     <UpdateView location={viewLocation} zoom={mapZoom} />
-                    <Marker position={marker} icon={icon}/>
+
+                    <Marker position={userLocation} icon={placePin}/>
+                    <Marker position={viewLocation} icon={placePin}/>
+                    <Marker position={marker} icon={placeArrow}/>
                 </MapContainer>
 
                 <div className="footer">

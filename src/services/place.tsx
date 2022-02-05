@@ -4,9 +4,9 @@ interface PlaceRequest {
     longitude: number,
     latitude: number,
     radius: number,
-    min_price?: number,
-    max_price?: number,
-    rating?: number
+    min_price: number,
+    max_price: number,
+    rating: number
 }
 
 interface Place {
@@ -30,7 +30,7 @@ async function getPlaces(request: PlaceRequest) : Promise<[Place] | null> {
         request).then((res) => {
             places = res.data;
     });
-    
+
     return places;
 }
 
