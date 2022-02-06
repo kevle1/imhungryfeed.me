@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'react-leaflet'
 
 import getLocation, { getLocationTemp } from '../services/location';
 import getPlaces, { Place, PlaceRequest, randomPlace } from '../services/place';
@@ -12,7 +12,7 @@ import Button from '../components/FeedMeButton';
 import PlaceCard from '../components/PlaceCard';
 import FilterPanel from '../components/FilterPanel';
 
-import { placeArrow, placePin, placeTarget } from '../components/MarkerIcon';
+import { placeArrow, placeLocationTarget, placeTarget } from '../components/MarkerIcon';
 import { sleep, cooldownTime } from '../services/cooldown';
 
 import '../assets/styles/map.scss'
@@ -35,9 +35,6 @@ function Frame() {
                 .then(res => {
                     if(res !== null) {
                         setInitialLocation([res.lat, res.lon]);
-                    }
-                    else {
-                        // Request location via browser API
                     }
 
                     setLoading(false);
@@ -69,9 +66,14 @@ function Frame() {
 
 function Map(view: MapView) {
     // Track 3 different points on the map
-    const [userLocation, setUserLocation] = useState<[number, number]>(view.location); // Users current location
-    const [viewLocation, setViewLocation] = useState<[number, number]>(view.location); // Map view location
-    const [placeMarker, setPlaceMarker] = useState<[number, number]>([0.0, 0.0]);
+    const [userLocation, setUserLocation] =
+    useState<[number, number]>(view.location); // Users current location
+
+    const [viewLocation, setViewLocation] =
+     useState<[number, number]>(view.location); // Map view location
+
+    const [placeMarker, setPlaceMarker] =
+        useState<[number, number]>([0.0, 0.0]);
 
     const [mapZoom, setMapZoom] = useState(view.zoom);
 
@@ -79,8 +81,11 @@ function Map(view: MapView) {
     const [buttonMessage] = useState("Feed Me!");
     const [loading, setLoading] = useState(false);
 
-    const [places, setPlaces] = useState<[Place] | null>(null);
-    const [currentPlace, setCurrentPlace] = useState<Place | null>(null);
+    const [places, setPlaces] =
+        useState<[Place] | null>(null);
+
+    const [currentPlace, setCurrentPlace] =
+        useState<Place | null>(null);
 
     const [cooldown, setCooldown] = useState(false);
 
@@ -140,6 +145,49 @@ function Map(view: MapView) {
         setMapZoom(17.5);
     }
 
+    function UpdateView(view: MapView) {
+        const map = useMap();
+
+        useMapEvents({
+            click(e) {
+                setCurrentPlace(null);
+                setPlaces(null);
+
+                console.log(e);
+
+                let placeRequest = { ...request };
+
+                placeRequest.latitude = e.latlng.lat;
+                placeRequest.longitude = e.latlng.lng;
+
+                setUserLocation([
+                    e.latlng.lat,
+                    e.latlng.lng
+                ]);
+
+                setViewLocation([
+                    e.latlng.lat,
+                    e.latlng.lng
+                ]);
+
+                setRequest(placeRequest);
+            },
+        })
+
+        var centre = map.getCenter();
+
+        // Avoid shaking the map slightly if request to update view to same coordinate
+        if(roundCoord(centre.lat) !== roundCoord(view.location[0]) &&
+            roundCoord(centre.lng) !== roundCoord(view.location[1]))
+        {
+            map.flyTo(view.location, view.zoom, {
+                animate: true,
+                duration: 0.5
+            });
+        }
+
+        return null;
+    }
     return (
         <div className="mapFrame">
             { currentPlace !== null ?
@@ -157,13 +205,25 @@ function Map(view: MapView) {
                 <MapContainer center={viewLocation}
                     zoom={mapZoom}
                     zoomControl={false}
-                    scrollWheelZoom={true}>
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                    scrollWheelZoom={true}
+
+                    >
+                    <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"/>
                     <UpdateView location={viewLocation} zoom={mapZoom} />
 
-                    <Marker position={userLocation} icon={placeTarget}/>
-                    <Marker position={viewLocation} icon={placeTarget}/>
-                    <Marker position={placeMarker} icon={placeArrow}/>
+                    <Circle center={userLocation}
+                        radius={request.radius + 300} // Google radius appears to be much larger
+                        color="#fa4a0a"
+                        fillOpacity={0}/>
+
+                    { currentPlace !== null ?
+                        <>
+                            <Marker position={placeMarker} icon={placeArrow}/>
+                            <Marker position={viewLocation} icon={placeTarget}/>
+                        </> :
+                            null }
+
+                    <Marker position={userLocation} icon={placeLocationTarget}/>
                 </MapContainer>
 
                 <div className="footer">
@@ -181,24 +241,6 @@ function Map(view: MapView) {
             </div>
         </div>
     );
-}
-
-function UpdateView(view: MapView) {
-    const map = useMap();
-
-    var centre = map.getCenter();
-
-    // Avoid shaking the map slightly if request to update view to same coordinate
-    if(roundCoord(centre.lat) !== roundCoord(view.location[0]) &&
-        roundCoord(centre.lng) !== roundCoord(view.location[1]))
-    {
-        map.flyTo(view.location, view.zoom, {
-            animate: true,
-            duration: 0.5
-        });
-    }
-
-    return null;
 }
 
 function roundCoord(coord: number): number {

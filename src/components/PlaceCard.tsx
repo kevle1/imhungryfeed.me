@@ -29,11 +29,11 @@ function PlaceCard(p: PlaceCardModel) {
                 starRatedColor='rgb(250, 75, 12)'
             />
             <span id="ratingCount">
-            ({place.rating_count})
+                ({place.rating_count})
             </span>
-        </div>
-        <div className="placePrice">
-            {new Array(place.price_level + 1).join("$")}
+            <span className="placePrice">
+                ·  {new Array(place.price_level + 1).join("$")}
+            </span>
         </div>
         <a href={place.url} target='_blank'>
             <img id="arrow" src={arrow}/>

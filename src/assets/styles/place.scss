@@ -10,7 +10,7 @@ $secondary-color: #5c5c5c;
     // right: 0px;
 
     max-width: 25em;
-    min-width: 18em;
+    min-width: 19em;
     // padding: 2em 2em 1em 2em; // Use for right alignment
     padding: 0 2em 1em 1em;
 
@@ -33,7 +33,7 @@ $secondary-color: #5c5c5c;
     }
 
     #arrow {
-        width: 4em;
+        width: 3em;
         transform: rotate(-100deg);
 
         margin-top: -3em;
@@ -53,6 +53,8 @@ $secondary-color: #5c5c5c;
     }
 
     .placePrice {
+        margin-left: 0.5em;
+        white-space: pre;
         color: gray;
     }
 
