@@ -11,7 +11,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 
+    overflow-x: hidden;
+
 	font-family: 'Poppins', sans-serif;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @font-face {

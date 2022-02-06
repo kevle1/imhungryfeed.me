@@ -7,6 +7,9 @@
 
     padding: 2em;
 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
     .interaction {
         position: absolute;
     }
@@ -50,4 +53,8 @@
             white-space: pre;
         }
     }
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

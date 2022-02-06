@@ -2,12 +2,14 @@ import '../assets/styles/panel.scss'
 import 'rc-slider/assets/index.css';
 
 import React, { useState } from 'react';
+import Tab from '../components/Tab';
 
-import searchIcon from '../assets/icons/search.svg';
 import locationIcon from '../assets/icons/location.svg';
+import close from '../assets/icons/arrow-r.svg'
 
 import { getLocationViaBrowser } from '../services/location';
 import { PlaceRequest } from '../services/place';
+import { sleep } from '../services/cooldown';
 
 import Slider, { Range } from 'rc-slider';
 
@@ -16,6 +18,7 @@ interface PanelInterface {
     updateRequest: React.Dispatch<React.SetStateAction<PlaceRequest>>
     setUserLocation: React.Dispatch<React.SetStateAction<[number, number]>>
     setViewLocation: React.Dispatch<React.SetStateAction<[number, number]>>
+    showPanel?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function FilterPanel(request: PanelInterface) {
@@ -24,13 +27,9 @@ function FilterPanel(request: PanelInterface) {
     async function handleBrowserLocationClick() {
         setLocationSource("Requesting location...");
 
-        let browserLocation = await getLocationViaBrowser();
+        await getLocationViaBrowser().then((browserLocation) => {
+            let placeRequest = { ...request.placeRequest };
 
-        console.log(browserLocation);
-
-        let placeRequest = { ...request.placeRequest };
-
-        if (browserLocation !== null){
             placeRequest.latitude = browserLocation.coords.latitude;
             placeRequest.longitude = browserLocation.coords.longitude;
 
@@ -39,20 +38,22 @@ function FilterPanel(request: PanelInterface) {
 
             request.updateRequest(placeRequest);
             setLocationSource("Browser Location");
-        }
-        else {
-            // TODO: Cleaner alert
+        }).catch((error) => {
             setLocationSource("Couldn't get location");
-        }
-    }
-
-    function handleLocationSearch() {
-        // TODO: Call API to get location
-        alert("Error: Currently unavailable");
+            setLocationSource("Approximate, based on IP");
+        });
     }
 
     return (
         <div className="filterPanel">
+            { request.showPanel ?
+                <div className="closeTab"
+                    onClick={() => request.showPanel!(false)}>
+                    <img id="close" src={close}/>
+                </div> : null
+            }
+
+            <div className="items">
             <div className="location">
                 <div className="category">
                     <span id="subheading">LOCATION</span>
@@ -130,6 +131,7 @@ function FilterPanel(request: PanelInterface) {
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

@@ -77,7 +77,6 @@ function Map(view: MapView) {
 
     const [mapZoom, setMapZoom] = useState(view.zoom);
 
-    // Currently unused
     const [buttonMessage] = useState("Feed Me!");
     const [loading, setLoading] = useState(false);
 
@@ -88,6 +87,8 @@ function Map(view: MapView) {
         useState<Place | null>(null);
 
     const [cooldown, setCooldown] = useState(false);
+
+    const [showDrawer, setShowDrawer] = useState(true);
 
     const [request, setRequest] = useState<PlaceRequest>({ // Default values
         latitude: userLocation[0],
@@ -136,8 +137,6 @@ function Map(view: MapView) {
                 place = randomPlace(places);
         }
 
-        console.log(place);
-
         setCurrentPlace(place);
 
         setViewLocation([place.location.lat, place.location.lng]);
@@ -153,12 +152,12 @@ function Map(view: MapView) {
                 setCurrentPlace(null);
                 setPlaces(null);
 
-                console.log(e);
-
                 let placeRequest = { ...request };
 
                 placeRequest.latitude = e.latlng.lat;
                 placeRequest.longitude = e.latlng.lng;
+
+                setMapZoom(15);
 
                 setUserLocation([
                     e.latlng.lat,
@@ -188,18 +187,23 @@ function Map(view: MapView) {
 
         return null;
     }
+
     return (
         <div className="mapFrame">
             { currentPlace !== null ?
                 <PlaceCard place={currentPlace!}/> :
                 null }
             <div className="filters">
-                <Tab/>
-                <FilterPanel
+                { showDrawer ? <FilterPanel
                     updateRequest={setRequest}
                     placeRequest={request}
                     setUserLocation={setUserLocation}
-                    setViewLocation={setViewLocation}/>
+                    setViewLocation={setViewLocation}
+                    showPanel={setShowDrawer}/> : null}
+
+                <div onClick={() => setShowDrawer(true)}>
+                    <Tab/>
+                </div>
             </div>
             <div className="mapContainer">
                 <MapContainer center={viewLocation}
@@ -208,7 +212,7 @@ function Map(view: MapView) {
                     scrollWheelZoom={true}
 
                     >
-                    <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"/>
+                    <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"/>
                     <UpdateView location={viewLocation} zoom={mapZoom} />
 
                     <Circle center={userLocation}
@@ -220,14 +224,13 @@ function Map(view: MapView) {
                         <>
                             <Marker position={placeMarker} icon={placeArrow}/>
                             <Marker position={viewLocation} icon={placeTarget}/>
-                        </> :
-                            null }
+                        </> : null }
 
                     <Marker position={userLocation} icon={placeLocationTarget}/>
                 </MapContainer>
 
                 <div className="footer">
-                    © Leaflet, OpenStreetMap & Google
+                    © Stadia, OpenStreetMap & Google
                     <span className="right">
                         Source      Privacy Policy      About
                     </span>

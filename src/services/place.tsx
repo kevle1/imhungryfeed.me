@@ -27,7 +27,9 @@ async function getPlaces(request: PlaceRequest) : Promise<[Place] | null> {
     let places = null;
 
     await axios.post("http://localhost:5000/api/places",
-        request).then((res) => {
+        request, {
+            timeout: 10000,
+        }).then((res) => {
             places = res.data;
     });
 

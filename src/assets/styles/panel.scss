@@ -3,24 +3,55 @@ $intermed-color: #4b4b4b;
 $intermed-light-color: gray;
 $component-width: 23em;
 
+#hidden {
+    transform: translateX(27em);
+}
+
 .filterPanel {
     z-index: 15;
     position: absolute;
-    top: 0px; // Use for right alignment
-    right: 0px;
+    top: 0; // Use for right alignment
+    right: 0;
 
     padding: 1.75em;
-    padding-left: 2em;
+    padding-left: 2.5em;
     border-radius: 1em;
 
     margin-top: 30vh;
 
+    animation: slide-in-from-right 0.5s forwards;
+
     width: $component-width;
+    height: 22em;
 
     color: $intermed-color;
     background-color: white;
 
     font-size: 11pt;
+
+    .closeTab {
+        cursor: pointer;
+        position: absolute;
+
+        margin-top: 9em;
+        margin-left: -4.5em;
+
+        width: 3em;
+        height: 4em;
+
+        border-radius: 1em;
+
+        background-color: $primary-color;
+
+        #close {
+            width: 2.5em;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0.7em;
+            display: block;
+        }
+    }
 
     #subheading {
         font-weight: 500;
@@ -31,7 +62,7 @@ $component-width: 23em;
         color: $intermed-light-color;
         font-size: 11pt;
         float: right;
-        margin-right: 1.5em;
+
     }
 
     .slider {
@@ -139,16 +170,40 @@ $component-width: 23em;
     }
 }
 
+@keyframes slide-in-from-right {
+    0% {
+        transform: translateX(900px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .tab {
+    cursor: pointer;
+
     position: absolute;
     background-color: $primary-color;
 
+    margin-top: 42vh;
+
     width: 4em;
     height: 5em;
+    z-index: 10;
 
-    z-index: 20;
     position: absolute;
+    top: 0px; // Use for right alignment
+    right: 0px;
 
-    top: 0px;
-    right: 24.5em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+
+    #filter {
+        width: 2.5em;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        display: block;
+    }
 }
