@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3abe03e0.css",
+    "main.js": "/static/js/main.a20e2316.js",
+    "static/media/marker-ol.svg": "/static/media/marker-ol.8723ecc71fbd693895e9650c194172a1.svg",
+    "static/media/cby-blk.woff2": "/static/media/cby-blk.d3dca2e092fed4df03e9.woff2",
+    "static/media/marker.svg": "/static/media/marker.79477c66956c8b07c7743bb9ab956d24.svg",
+    "index.html": "/index.html",
+    "static/media/filter.svg": "/static/media/filter.96b4e5c22dca5a77baa766009ae3f15e.svg",
+    "static/media/location.svg": "/static/media/location.2cf6568042659103fab00a0d07d9fa58.svg",
+    "static/media/place.svg": "/static/media/place.fd17a1feb9f20474206d5952ff6a45fd.svg",
+    "static/media/target.svg": "/static/media/target.6f7df7aae3c4ad72904d0449720371ed.svg",
+    "static/media/close.svg": "/static/media/close.011cdb4205edf7fb4a4aa7b22dd6cbfa.svg",
+    "static/media/arrow-r.svg": "/static/media/arrow-r.5051f98a06f42741123c7bdf358f4f1e.svg",
+    "main.3abe03e0.css.map": "/static/css/main.3abe03e0.css.map",
+    "main.a20e2316.js.map": "/static/js/main.a20e2316.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3abe03e0.css",
+    "static/js/main.a20e2316.js"
+  ]
+}
