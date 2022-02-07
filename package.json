@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
@@ -16,7 +15,6 @@
     "axios": "^0.21.1",
     "emojisplosion": "^2.6.1",
     "leaflet": "^1.7.1",
-    "node-sass": "^7.0.1",
     "rc-slider": "^9.7.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -26,6 +24,7 @@
     "react-scripts": "^5.0.0",
     "react-star-ratings": "^2.3.0",
     "react-transition-group": "^4.4.2",
+    "sass": "^1.49.7",
     "styled-components": "^5.3.0",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
@@ -35,8 +34,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint" : "eslint .",
-    "lint:fix" : "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +58,7 @@
   "devDependencies": {
     "@types/leaflet": "^1.7.9",
     "@types/react-star-ratings": "^2.3.0",
-    "@types/react-transition-group": "^4.4.4"
+    "@types/react-transition-group": "^4.4.4",
+    "mini-css-extract-plugin": "2.4.5"
   }
 }
