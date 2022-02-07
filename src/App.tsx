@@ -16,7 +16,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <Router>
                 <Switch>
-                    <Route exact path="/food">
+                    <Route exact path="/">
                         <FoodMap/>
                     </Route>
                     <Route exact path="/wheel">
