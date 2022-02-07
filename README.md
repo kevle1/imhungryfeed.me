@@ -10,4 +10,4 @@ A React Typescript application for a random restaurant picker app.
 
 ## Running it yourself! 🌮
 
-`npm run dev` in working directory
+`yarn start` in working directory
