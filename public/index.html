@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="I'm Hungry, Feed Me"/>
-    <meta property="og:description" content="A random restaurant picker"/>
-    <meta property="og:type" content="website"/>
-    <meta name="theme-color" content="#fa4a0a" />
-    <meta property="og:image" content="%PUBLIC_URL%/og.png"/>
-    <meta name="twitter:card" content="summary_large_image">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="I'm Hungry, Feed Me"/>
+        <meta property="og:description" content="A random restaurant picker"/>
+        <meta property="og:type" content="website"/>
+        <meta name="theme-color" content="#fa4a0a" />
+        <meta property="og:image" content="%PUBLIC_URL%/og.png"/>
+        <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <title>I'm Hungry, Feed Me</title>
+        <title>I'm Hungry, Feed Me</title>
 
-    <!--Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <!--Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!--Leaflet Prereqs-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-          crossorigin=""></script>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to eat this app :(</noscript>
-    <div id="root"></div>
-  </body>
+        <!--Leaflet Prereqs-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+        <!-- Start Single Page Apps for GitHub Pages -->
+        <script type="text/javascript">
+            // Single Page Apps for GitHub Pages
+            // MIT License
+            // https://github.com/rafgraph/spa-github-pages
+            // This script checks to see if a redirect is present in the query string,
+            // converts it back into the correct url and adds it to the
+            // browser's history using window.history.replaceState(...),
+            // which won't cause the browser to attempt to load the new url.
+            // When the single page app is loaded further down in this file,
+            // the correct url will be waiting in the browser's history for
+            // the single page app to route accordingly.
+            (function(l) {
+                if (l.search[1] === '/' ) {
+                var decoded = l.search.slice(1).split('&').map(function(s) {
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+                }
+            }(window.location))
+        </script>
+        <!-- End Single Page Apps for GitHub Pages -->
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to eat this app :(</noscript>
+        <div id="root"></div>
+    </body>
 </html>
