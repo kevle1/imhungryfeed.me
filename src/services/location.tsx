@@ -10,7 +10,7 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
         let cf_str = cf_response.data.replace(/(\r\n|\n|\r)/gm, ",")
 
         let ip = cf_str.match(IP_REGEX)[0];
-        console.log(ip)
+        // console.log(ip);
 
         await axios.get(`http://ip-api.com/json/${ip}?fields=lat,lon`)
             .then((ip_response) => {
@@ -24,20 +24,23 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
         return null;
     });
 
+    await sleep(500);
+
     return location;
 }
 
 function getLocationViaBrowser() : Promise<GeolocationPosition> {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(
-            position => resolve(position)
+            position => resolve(position),
+            error => reject(error)
         );
     })
 }
 
 async function getLocationTemp() : Promise<{ lat: number; lon: number; }> {
     await sleep(1000); // Mock loading
-    console.log("called");
+    console.log("Using mock location");
     return { lat: -31.9474, lon: 115.8648 };
 }
 

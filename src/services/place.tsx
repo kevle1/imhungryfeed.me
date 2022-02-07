@@ -41,10 +41,6 @@ function randomPlace(places: [Place]) : Place {
     return places[idx];
 }
 
-function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export { randomPlace };
 export type { Place, PlaceRequest };
 export default getPlaces;

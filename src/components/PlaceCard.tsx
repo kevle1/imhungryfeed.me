@@ -12,7 +12,7 @@ function PlaceCard(p: PlaceCardModel) {
     let place = p.place!;
 
     return(<div className="placeCard">
-        <a href={place.url} target='_blank'>
+        <a href={place.url} target='_blank' rel="noreferrer">
             <div className="placeName">
                 {place.name}
             </div>
@@ -35,8 +35,8 @@ function PlaceCard(p: PlaceCardModel) {
                 ·  {new Array(place.price_level + 1).join("$")}
             </span>
         </div>
-        <a href={place.url} target='_blank'>
-            <img id="arrow" src={arrow}/>
+        <a href={place.url} target='_blank' rel="noreferrer">
+            <img alt="Arrow icon" id="arrow" src={arrow}/>
         </a>
     </div>);
 }

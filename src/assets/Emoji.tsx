@@ -40,8 +40,6 @@ class Emoji {
     }
 
     refreshPosition() {
-        console.log("refreshing pos")
-
         if (this.alive) {
             this.y += this.getYIncrement();
             this.x += this.getXIncrement();

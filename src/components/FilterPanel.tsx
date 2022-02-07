@@ -2,7 +2,6 @@ import '../assets/styles/panel.scss'
 import 'rc-slider/assets/index.css';
 
 import React, { useState } from 'react';
-import Tab from '../components/Tab';
 
 import locationIcon from '../assets/icons/location.svg';
 import close from '../assets/icons/arrow-r.svg'
@@ -38,8 +37,9 @@ function FilterPanel(request: PanelInterface) {
 
             request.updateRequest(placeRequest);
             setLocationSource("Browser Location");
-        }).catch((error) => {
+        }).catch(async (error) => {
             setLocationSource("Couldn't get location");
+            await sleep(2000);
             setLocationSource("Approximate, based on IP");
         });
     }
@@ -49,7 +49,7 @@ function FilterPanel(request: PanelInterface) {
             { request.showPanel ?
                 <div className="closeTab"
                     onClick={() => request.showPanel!(false)}>
-                    <img id="close" src={close}/>
+                    <img alt="Close icon" id="close" src={close}/>
                 </div> : null
             }
 
@@ -67,7 +67,7 @@ function FilterPanel(request: PanelInterface) {
                         onClick={() => handleBrowserLocationClick()}/> */}
                     <button className="locationButton"
                         onClick={() => handleBrowserLocationClick()}>
-                        <img className="locationIcon" src={locationIcon}/>
+                        <img alt="Location icon" className="locationIcon" src={locationIcon}/>
                         <span id="txt">Get Current Location</span>
                     </button>
                 </div>

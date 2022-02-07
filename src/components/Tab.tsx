@@ -3,7 +3,7 @@ import filterIcon from '../assets/icons/filter.svg';
 
 function Tab() {
     return (<div className="tab">
-        <img id="filter" src={filterIcon}/>
+        <img alt="Filter icon" id="filter" src={filterIcon}/>
     </div>)
 }
 

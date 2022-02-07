@@ -1,11 +1,9 @@
-import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
 
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import NotFound from './pages/NotFound';
@@ -16,7 +14,6 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
             <Router>
                 <Switch>
                     <Route exact path="/food">
