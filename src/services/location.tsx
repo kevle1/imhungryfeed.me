@@ -15,13 +15,25 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
         await axios.get(`http://ip-api.com/json/${ip}?fields=lat,lon`)
             .then((ip_response) => {
                 location = ip_response.data;
-            }).catch((ip_error) => {
-                console.log("Error: Could not get IP information - " + ip_error);
-                return null;
+            }).catch(async (ip_error) => {
+                console.log("Error: Could not get IP information from ip-api- " + ip_error);
+
+                // ipinfo.io fallback (heavily ratelimited)
+                await axios.get("https://ipinfo.io/json").then(async (ipi_response) => {
+                    let loc_str = ipi_response.data.loc.split(",");
+
+                    location = {
+                        lat: loc_str[0],
+                        lon: loc_str[1]
+                    }
+                }).catch(async (ipi_error) => {
+                    console.log("Error: Could not get IP via ipinfo.io - " + ipi_error);
+
+                    return null;
+                });
             });
-    }).catch((cf_error) => {
-        console.log("Error: Could not get IP - " + cf_error);
-        return null;
+    }).catch(async (cf_error) => {
+        console.log("Error: Could not get IP" + cf_error);
     });
 
     await sleep(500);

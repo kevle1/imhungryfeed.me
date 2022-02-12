@@ -25,7 +25,7 @@ interface Place {
 async function getPlaces(request: PlaceRequest) : Promise<[Place] | null> {
     let places = null;
 
-    await axios.post("http://api.imhungryfeed.me:8181/api/places",
+    await axios.post("https://api.imhungryfeed.me/places",
         request, {
             timeout: 10000,
         }).then((res) => {
