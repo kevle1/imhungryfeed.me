@@ -2,6 +2,7 @@ $primary-color: #fa4a0a;
 $intermed-color: #4b4b4b;
 $intermed-light-color: gray;
 $component-width: 23em;
+$medium: 500px;
 
 #hidden {
     transform: translateX(27em);
@@ -15,7 +16,8 @@ $component-width: 23em;
 
     padding: 1.75em;
     padding-left: 2.5em;
-    border-radius: 1em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
 
     margin-top: 30vh;
 
@@ -107,8 +109,6 @@ $component-width: 23em;
                 border: 2px solid $primary-color;
                 border-top-left-radius: 0.5em;
                 border-bottom-left-radius: 0.5em;
-
-                font-family: 'IBM Plex Sans', monospace;
             }
 
             input:focus {
@@ -205,5 +205,62 @@ $component-width: 23em;
         margin-right: auto;
         margin-top: 1em;
         display: block;
+    }
+}
+
+@media screen and (max-width: $medium) {
+    .filterPanel {
+        margin-top: 20vh;
+
+        width: 20em;
+
+        font-size: 10pt;
+
+        #subheading {
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        #status {
+            color: $intermed-light-color;
+            font-size: 10pt;
+            float: right;
+        }
+
+        .slider {
+            width: 20em;
+
+            .rc-slider-handle {
+                margin-top: -0.6em;
+
+                height: 1.5em;
+                width: 1.5em;
+            }
+        }
+
+        .location {
+            width: 100%;
+
+            .searchBox {
+                margin-top: 1em;
+
+                .locationButton {
+                    width: 20em;
+
+                    .locationIcon {
+                        margin-left: 2.3em;
+                        width: 2em;
+                    }
+                }
+            }
+        }
+
+        .dividingLine {
+            width: 20em;
+        }
+    }
+
+    .tab {
+        margin-top: 35vh;
     }
 }

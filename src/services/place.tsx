@@ -23,7 +23,6 @@ interface Place {
 }
 
 async function getPlaces(request: PlaceRequest) : Promise<[Place] | null> {
-    // TODO: Build request payload
     let places = null;
 
     await axios.post("http://localhost:5000/api/places",

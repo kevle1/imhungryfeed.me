@@ -1,5 +1,6 @@
 $primary-color: #FA4B0C;
 $text-color: #7b7b7b9f;
+$medium: 500px;
 
 .landing {
     z-index: 100;
@@ -12,7 +13,7 @@ $text-color: #7b7b7b9f;
       -o-animation: fadein 3s; /* Opera < 12.1 */
          animation: fadein 3s;
 
-    min-height: 100vh;
+    height: 90vh;
     min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
@@ -71,4 +72,33 @@ $text-color: #7b7b7b9f;
 @keyframes spin {
     0%  {-webkit-transform: rotate(0deg);}
     100% {-webkit-transform: rotate(360deg);}
+}
+
+@media screen and (max-width: $medium) {
+    .landing {
+        .content {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 10;
+
+            #title {
+                text-align: center;
+                margin-right: 0;
+            }
+
+            #credits {
+                margin-top: 40em;
+                margin-left: 0;
+            }
+
+            #hungry_gif {
+                margin-left: 0;
+            }
+        }
+    }
 }

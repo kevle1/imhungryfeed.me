@@ -9,6 +9,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import NotFound from './pages/NotFound';
 import FoodMap from './pages/FoodMap';
 
+import Privacy from './pages/Privacy';
+import Loading from './pages/Loading';
+
 function App() {
     const queryClient = new QueryClient();
 
@@ -21,6 +24,12 @@ function App() {
                     </Route>
                     <Route exact path="/wheel">
                         <h1>Spin the wheel coming soon</h1>
+                    </Route>
+                    <Route exact path="/privacy">
+                        <Privacy/>
+                    </Route>
+                    <Route exact path="/loading">
+                        <Loading/>
                     </Route>
                     <Route>
                         <NotFound />

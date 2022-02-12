@@ -1,5 +1,6 @@
 $primary-color: #fa4a0a;
 $secondary-color: #5c5c5c;
+$medium: 900px;
 
 .placeCard {
     z-index: 15;
@@ -78,5 +79,52 @@ $secondary-color: #5c5c5c;
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: $medium) {
+
+    .placeCard {
+        position: absolute;
+        bottom: 9em;
+
+        max-width: 10em;
+        min-width: 300px;
+        text-align: center;
+
+        left: 50%;
+        margin-left: -10.5em;
+
+        padding: 0.5em 1em 1em 1em;
+
+        border-radius: 1em;
+
+        background-color: white;
+
+        animation: slideIn 1s forwards;
+
+        div {
+            margin-top: 0.1em;
+        }
+
+        a {
+            text-decoration: none;
+
+            :hover {
+                text-decoration: underline;
+            }
+        }
+
+        #arrow {
+            display: none;
+        }
+
+        .placeName {
+            font-size: 24pt;
+        }
+
+        .placeAddress {
+            font-size: 10pt;
+        }
     }
 }

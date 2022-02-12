@@ -1,3 +1,5 @@
+$medium: 900px;
+
 .mapFrame {
     height: 100vh;
     width: 100vw;
@@ -40,7 +42,7 @@
         width: 100%;
 
         font-size: 8pt;
-        color: rgb(170, 170, 170);
+        color: #aaaaaa;
         position: relative;
 
         padding-left: 0.8em;
@@ -50,11 +52,42 @@
             float: right;
             padding-right: 1.6em;
 
-            white-space: pre;
+            .entry {
+                margin-left: 1em;
+
+                a {
+                    text-decoration: none;
+                    color: #aaaaaa;
+                }
+
+                a:hover {
+                    color: #5a5a5a;
+                }
+            }
         }
     }
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+@media screen and (max-width: $medium) {
+    .mapFrame {
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        .mapContainer {
+            border-radius: 0;
+            border-bottom-left-radius: 1em;
+            border-bottom-right-radius: 1em;
+        }
+    }
+
+    .footer {
+        .copyright {
+            font-size: 7pt;
+        }
+    }
 }

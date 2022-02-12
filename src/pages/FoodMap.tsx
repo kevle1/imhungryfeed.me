@@ -3,7 +3,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'react-leaflet'
 
-import getLocation from '../services/location';
+import getLocation, { getLocationTemp } from '../services/location';
 import getPlaces, { Place, PlaceRequest, randomPlace } from '../services/place';
 
 import Loading from '../pages/Loading';
@@ -31,7 +31,7 @@ function Frame() {
 
     useEffect(() => {
         if(isInitialRender.current){
-            getLocation()
+            getLocationTemp()
                 .then(res => {
                     if(res !== null) {
                         setInitialLocation([res.lat, res.lon]);
@@ -229,9 +229,23 @@ function Map(view: MapView) {
                 </MapContainer>
 
                 <div className="footer">
-                    © Stadia, OpenStreetMap & Google
+                    <span className="copyright">
+                        © Stadia, OpenStreetMap & Google
+                    </span>
                     <span className="right">
-                        Source      Privacy Policy      About
+                        <span className="entry">
+                            <a href="https://github.com/kevinle-1/imhungryfeed.me"
+                                target='_blank'
+                                rel="noreferrer">Source</a>
+                        </span>
+                        <span className="entry">
+                            <a href="/privacy"
+                                target='_blank'
+                                rel="noreferrer">Privacy Policy</a>
+                        </span>
+                        {/* <span className="entry">
+                            About
+                        </span> */}
                     </span>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 $primary-color: #FA4B0C;
 $secondary-color: #FFFFFF;
+$medium: 900px;
 
 .emoji-styles { // Override the crazy z-index (2147483647)
     z-index: 5 !important;
@@ -66,4 +67,11 @@ $secondary-color: #FFFFFF;
 @keyframes spin {
     0%  {-webkit-transform: rotate(0deg);}
     100% {-webkit-transform: rotate(360deg);}
+}
+
+@media screen and (max-width: $medium) {
+    #feedMeBtn {
+        bottom: 1.5em;
+        border-radius: 0.5em;
+    }
 }
