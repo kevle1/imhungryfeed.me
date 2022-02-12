@@ -3,7 +3,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { MapContainer, TileLayer, Marker, Circle, useMap, useMapEvents } from 'react-leaflet'
 
-import getLocation, { getLocationTemp } from '../services/location';
+import getLocation from '../services/location';
 import getPlaces, { Place, PlaceRequest, randomPlace } from '../services/place';
 
 import Loading from '../pages/Loading';
@@ -31,7 +31,7 @@ function Frame() {
 
     useEffect(() => {
         if(isInitialRender.current){
-            getLocationTemp()
+            getLocation()
                 .then(res => {
                     if(res !== null) {
                         setInitialLocation([res.lat, res.lon]);

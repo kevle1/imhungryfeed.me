@@ -4,7 +4,7 @@
 
 https://imhungryfeed.me
 
-*Still in development, not yet deployed!!!*
+Note: Still in Beta!
 
 A React Typescript application for a random restaurant picker app.
 
