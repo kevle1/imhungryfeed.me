@@ -28,9 +28,15 @@ async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
             .then((ip_response) => {
                 location = ip_response.data;
             }).catch(async (ip_error) => {
-                console.log("Error: Could not get location from ip-api & Cloudflare - " + ip_error);
+                console.log("Error: Could not get location from ip-api " + ip_error);
+
+                return null;
             });
-        })
+        }).catch(async (cf_error) => {
+            console.log("Error: Could not get IP from Cloudflare " + cf_error);
+
+            return null;
+        });
     });
 
     await sleep(500);
