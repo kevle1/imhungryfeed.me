@@ -12,6 +12,8 @@ import Button from '../components/FeedMeButton';
 import PlaceCard from '../components/PlaceCard';
 import FilterPanel from '../components/FilterPanel';
 
+import Info from '../components/Info';
+
 import { placeArrow, placeLocationTarget, placeTarget } from '../components/MarkerIcon';
 import { sleep, cooldownTime } from '../services/cooldown';
 
@@ -66,29 +68,23 @@ function Frame() {
 
 function Map(view: MapView) {
     // Track 3 different points on the map
-    const [userLocation, setUserLocation] =
-    useState<[number, number]>(view.location); // Users current location
-
-    const [viewLocation, setViewLocation] =
-     useState<[number, number]>(view.location); // Map view location
-
-    const [placeMarker, setPlaceMarker] =
-        useState<[number, number]>([0.0, 0.0]);
+    const [userLocation, setUserLocation] = useState<[number, number]>(view.location); // Users current location
+    const [viewLocation, setViewLocation] = useState<[number, number]>(view.location); // Map view location
+    const [placeMarker, setPlaceMarker] = useState<[number, number]>([0.0, 0.0]);
 
     const [mapZoom, setMapZoom] = useState(view.zoom);
 
     const [buttonMessage] = useState("Feed Me!");
     const [loading, setLoading] = useState(false);
 
-    const [places, setPlaces] =
-        useState<[Place] | null>(null);
-
-    const [currentPlace, setCurrentPlace] =
-        useState<Place | null>(null);
+    const [places, setPlaces] = useState<[Place] | null>(null);
+    const [currentPlace, setCurrentPlace] = useState<Place | null>(null);
 
     const [cooldown, setCooldown] = useState(false);
 
-    const [showDrawer, setShowDrawer] = useState(true);
+    const [showDrawer, setShowDrawer] = useState(false);
+    const [showInfo, setShowInfo] = useState(true);
+    const [info, setInfo] = useState("You can also click/ tap on the map to set your location 😎");
 
     const [request, setRequest] = useState<PlaceRequest>({ // Default values
         latitude: userLocation[0],
@@ -97,6 +93,10 @@ function Map(view: MapView) {
         min_price: 1,
         max_price: 4,
         rating: 3.0
+    });
+
+    sleep(2000).then(() => {
+        setShowInfo(false);
     });
 
     useEffect(() => {
@@ -108,7 +108,7 @@ function Map(view: MapView) {
             setLoading(true);
             setCooldown(true);
 
-            if (places === null ) {
+            if (places === null) {
                 await getPlaces(request).then((placesResponse) => {
 
                     if(placesResponse !== null) {
@@ -119,8 +119,14 @@ function Map(view: MapView) {
                         setPlaces(placesResponse);
                         displayPlace(placesResponse);
                     }
-                }).catch((error) =>
-                     alert("Error: Could not get places"));
+                }).catch((error) => {
+                    //alert("Error: Could not get places"));
+
+                    setInfo("Error: Couldn't get places 😢");
+                    setShowInfo(true);
+
+                    setPlaces(null); 
+                });
             }
             else {
                 displayPlace(places);
@@ -198,6 +204,9 @@ function Map(view: MapView) {
             { currentPlace !== null ?
                 <PlaceCard place={currentPlace!}/> :
                 null }
+            <Info
+                message={info}
+                visible={showInfo}/>
             <div className="filters">
                 { showDrawer ? <FilterPanel
                     updateRequest={setRequest}
@@ -205,7 +214,6 @@ function Map(view: MapView) {
                     setUserLocation={setUserLocation}
                     setViewLocation={setViewLocation}
                     showPanel={setShowDrawer}/> : null}
-
                 <div onClick={() => setShowDrawer(true)}>
                     <Tab/>
                 </div>
@@ -215,7 +223,6 @@ function Map(view: MapView) {
                     zoom={mapZoom}
                     zoomControl={false}
                     scrollWheelZoom={true}
-
                     >
                     <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"/>
                     <UpdateView location={viewLocation} zoom={mapZoom} />
