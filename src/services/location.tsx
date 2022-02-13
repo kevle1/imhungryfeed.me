@@ -6,34 +6,31 @@ const IP_REGEX = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/g;
 async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
     let location = null;
 
-    await axios.get("https://www.cloudflare.com/cdn-cgi/trace").then(async (cf_response) => {
-        let cf_str = cf_response.data.replace(/(\r\n|\n|\r)/gm, ",")
+    await axios.get("http://ip-api.com/json").then(async (ipi_response) => {
+        let loc = ipi_response.data;
 
-        let ip = cf_str.match(IP_REGEX)[0];
-        // console.log(ip);
+        location = {
+            lat: loc.lat,
+            lon: loc.lon
+        }
+    }).catch(async (ipa_error) => {
+        console.log("Error: Could not get location via ip-api directly " + ipa_error);
 
-        await axios.get(`http://ip-api.com/json/${ip}?fields=lat,lon`)
+        let ip = "";
+
+        await axios.get("https://www.cloudflare.com/cdn-cgi/trace").then(async (cf_response) => {
+            let cf_str = cf_response.data.replace(/(\r\n|\n|\r)/gm, ",")
+
+            ip = cf_str.match(IP_REGEX)[0];
+            // console.log(ip);
+        }).then(async (cf_response) => {
+            await axios.get(`http://ip-api.com/json/${ip}?fields=lat,lon`)
             .then((ip_response) => {
                 location = ip_response.data;
             }).catch(async (ip_error) => {
-                console.log("Error: Could not get IP information from ip-api- " + ip_error);
-
-                // ipinfo.io fallback (heavily ratelimited)
-                await axios.get("https://ipinfo.io/json").then(async (ipi_response) => {
-                    let loc_str = ipi_response.data.loc.split(",");
-
-                    location = {
-                        lat: loc_str[0],
-                        lon: loc_str[1]
-                    }
-                }).catch(async (ipi_error) => {
-                    console.log("Error: Could not get IP via ipinfo.io - " + ipi_error);
-
-                    return null;
-                });
+                console.log("Error: Could not get location from ip-api & Cloudflare - " + ip_error);
             });
-    }).catch(async (cf_error) => {
-        console.log("Error: Could not get IP" + cf_error);
+        })
     });
 
     await sleep(500);

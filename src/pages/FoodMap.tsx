@@ -110,7 +110,12 @@ function Map(view: MapView) {
 
             if (places === null ) {
                 await getPlaces(request).then((placesResponse) => {
+
                     if(placesResponse !== null) {
+                        // if (!placesResponse.length) {
+                        //     alert("Error: No places were returned :(")
+                        // }
+
                         setPlaces(placesResponse);
                         displayPlace(placesResponse);
                     }
