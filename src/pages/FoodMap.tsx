@@ -129,6 +129,7 @@ function Map(view: MapView) {
     }
 
     function displayPlace(places: [Place]) {
+        setShowDrawer(false);
         let place = randomPlace(places);
 
         while(place.location.lat === viewLocation[0] &&

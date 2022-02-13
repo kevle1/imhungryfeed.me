@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/styles/button.scss';
 import { sleep, cooldownTime } from '../services/cooldown';
 
@@ -11,10 +11,22 @@ interface ButtonState {
 
 function FeedMeButton(state: ButtonState) {
     const [cooldown, setCooldown] = useState(false);
+    const [width, setWidth] = useState<number>(window.innerWidth);
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
 
     async function feedMeButtonClick() {
         if(!cooldown){
-            emojiExplode("feedMeBtn");
+            emojiExplode("feedMeBtn", width);
 
             setCooldown(true);
             await sleep(cooldownTime);
@@ -25,7 +37,8 @@ function FeedMeButton(state: ButtonState) {
     return (
         <div id="feedMeBtn"
             className={cooldown ? "cooldown" : "enabled"}
-            onClick={() => feedMeButtonClick()}>
+            onClick={(e) => {
+                feedMeButtonClick()}}>
                 <div className="text">
                     { state.loading ?
                         <div className="loadingEmoji">
