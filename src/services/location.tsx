@@ -4,7 +4,7 @@ import { sleep } from '../services/cooldown';
 async function getLocation() : Promise<{ lat: number; lon: number; } | null> {
     let location = null;
 
-    await axios.get("https://api.imhungryfeed.me/ip").then(async (ip_response) => {
+    await axios.get("https://imhungryfeed-me-api.vercel.app/ip").then(async (ip_response) => {
         let loc = ip_response.data;
 
         location = {

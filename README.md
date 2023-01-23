@@ -2,7 +2,7 @@
 
 ![opengraph image](https://raw.githubusercontent.com/kevinle-1/imhungryfeed.me/main/public/og.png)
 
-https://imhungryfeed.me
+https://imhungryfeed-me-api.vercel.app/me
 
 Note: Still in Beta!
 

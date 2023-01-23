@@ -6,7 +6,7 @@ function Privacy() {
             <div className="h1">Privacy Policy</div>
             <p>Location and IP data is collected in order to enable use of this application. <br/>
 
-            This data is collected via requests made to the <a href="https://api.imhungryfeed.me">API endpoint</a>.<br/><br/>
+            This data is collected via requests made to the <a href="https://imhungryfeed-me-api.vercel.app/">API endpoint</a>.<br/><br/>
 
             This location data is anonymous and is forwarded to
             the <a href="https://developers.google.com/maps/documentation/places/web-service/overview">Google Maps Places API</a> with
