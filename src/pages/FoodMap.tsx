@@ -237,7 +237,7 @@ function Map(view: MapView) {
           zoomControl={false}
           scrollWheelZoom={true}
         >
-          <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png" />
+          <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <UpdateView location={viewLocation} zoom={mapZoom} />
 
           <Circle
