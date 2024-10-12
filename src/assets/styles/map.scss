@@ -1,93 +1,93 @@
 $medium: 900px;
 
 .mapFrame {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 
-    box-sizing: border-box;
-    overflow: auto;
+  box-sizing: border-box;
+  overflow: auto;
 
-    padding: 2em;
+  padding: 2em;
 
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
-    .interaction {
-        position: absolute;
+  .interaction {
+    position: absolute;
+  }
+
+  .mapContainer {
+    height: 100%;
+    width: 100%;
+
+    border-radius: 1em;
+    background-color: lightgray;
+
+    .leaflet-container {
+      z-index: 0;
+
+      border-radius: 1em;
+
+      height: 100%;
+      width: 100%;
+
+      .leaflet-control-attribution {
+        visibility: hidden;
+      }
     }
+  }
 
-    .mapContainer {
-        height: 100%;
-        width: 100%;
+  .footer {
+    overflow-y: hidden;
+    width: 100%;
 
-        border-radius: 1em;
-        background-color: lightgray;
+    font-size: 8pt;
+    color: #aaaaaa;
+    position: relative;
 
-        .leaflet-container {
-            z-index: 0;
+    padding-left: 0.8em;
+    padding-top: 0.8em;
 
-            border-radius: 1em;
+    .right {
+      float: right;
+      padding-right: 1.6em;
 
-            height: 100%;
-            width: 100%;
+      .entry {
+        margin-left: 1em;
 
-            .leaflet-control-attribution {
-                visibility: hidden;
-            }
+        a {
+          text-decoration: none;
+          color: #aaaaaa;
         }
-    }
 
-    .footer {
-        overflow-y: hidden;
-        width: 100%;
-
-        font-size: 8pt;
-        color: #aaaaaa;
-        position: relative;
-
-        padding-left: 0.8em;
-        padding-top: 0.8em;
-
-        .right {
-            float: right;
-            padding-right: 1.6em;
-
-            .entry {
-                margin-left: 1em;
-
-                a {
-                    text-decoration: none;
-                    color: #aaaaaa;
-                }
-
-                a:hover {
-                    color: #5a5a5a;
-                }
-            }
+        a:hover {
+          color: #5a5a5a;
         }
+      }
     }
+  }
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: $medium) {
-    .mapFrame {
-        padding-top: 0;
-        padding-left: 0;
-        padding-right: 0;
+  .mapFrame {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
 
-        .mapContainer {
-            border-radius: 0;
-            border-bottom-left-radius: 1em;
-            border-bottom-right-radius: 1em;
-        }
+    .mapContainer {
+      border-radius: 0;
+      border-bottom-left-radius: 1em;
+      border-bottom-right-radius: 1em;
     }
+  }
 
-    .footer {
-        .copyright {
-            font-size: 7pt;
-        }
+  .footer {
+    .copyright {
+      font-size: 7pt;
     }
+  }
 }

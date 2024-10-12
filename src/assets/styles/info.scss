@@ -1,42 +1,42 @@
-$primary-color: #FA4B0C;
+$primary-color: #fa4b0c;
 $medium: 900px;
 
 .info {
-    position: absolute;
-    z-index: 20;
+  position: absolute;
+  z-index: 20;
 
-    color: $primary-color;
-    font-weight: 600;
+  color: $primary-color;
+  font-weight: 600;
 
-    width: 18em;
+  width: 18em;
 
-    text-align: center;
+  text-align: center;
 
-    padding: 1.5em;
+  padding: 1.5em;
 
-    margin-left: -10.5em;
-    top: 0;
-    left: 50%;
+  margin-left: -10.5em;
+  top: 0;
+  left: 50%;
 
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
 
-    background-color: white;
+  background-color: white;
 
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(0);
-    transition: all 0.3s ease-out;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
 }
 
 #visible {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(30%);
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(30%);
 }
 
 @media screen and (max-width: $medium) {
-    .info {
-        top: -2em;
-    }
+  .info {
+    top: -2em;
+  }
 }

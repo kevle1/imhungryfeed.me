@@ -1,44 +1,40 @@
-import { Place } from '../services/place';
-import '../assets/styles/place.scss';
+import { Place } from "../services/place";
+import "../assets/styles/place.scss";
 
-import arrow from '../assets/icons/marker.svg'
-import StarRatings from 'react-star-ratings';
+import arrow from "../assets/icons/marker.svg";
+import StarRatings from "react-star-ratings";
 
 interface PlaceCardModel {
-    place?: Place
+  place?: Place;
 }
 
 function PlaceCard(p: PlaceCardModel) {
-    let place = p.place!;
+  let place = p.place!;
 
-    return(<div className="placeCard">
-        <a href={place.url} target='_blank' rel="noreferrer">
-            <div className="placeName">
-                {place.name}
-            </div>
-        </a>
-        <div className="placeAddress">
-            {place.address}
-        </div>
-        <div className="placeRating">
-            <span id="rating">{place.rating}</span>
-            <StarRatings
-                rating={place.rating}
-                starDimension="20px"
-                starSpacing="2px"
-                starRatedColor='rgb(250, 75, 12)'
-            />
-            <span id="ratingCount">
-                ({place.rating_count})
-            </span>
-            <span className="placePrice">
-                ·  {new Array(place.price_level + 1).join("$")}
-            </span>
-        </div>
-        <a href={place.url} target='_blank' rel="noreferrer">
-            <img alt="Arrow icon" id="arrow" src={arrow}/>
-        </a>
-    </div>);
+  return (
+    <div className="placeCard">
+      <a href={place.url} target="_blank" rel="noreferrer">
+        <div className="placeName">{place.name}</div>
+      </a>
+      <div className="placeAddress">{place.address}</div>
+      <div className="placeRating">
+        <span id="rating">{place.rating}</span>
+        <StarRatings
+          rating={place.rating}
+          starDimension="20px"
+          starSpacing="2px"
+          starRatedColor="rgb(250, 75, 12)"
+        />
+        <span id="ratingCount">({place.rating_count})</span>
+        <span className="placePrice">
+          · {new Array(place.price_level + 1).join("$")}
+        </span>
+      </div>
+      <a href={place.url} target="_blank" rel="noreferrer">
+        <img alt="Arrow icon" id="arrow" src={arrow} />
+      </a>
+    </div>
+  );
 }
 
 export default PlaceCard;
