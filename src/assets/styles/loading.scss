@@ -1,104 +1,108 @@
-$primary-color: #FA4B0C;
+$primary-color: #fa4b0c;
 $text-color: #7b7b7b9f;
 $medium: 500px;
 
 .landing {
-    z-index: 100;
+  z-index: 100;
 
-    position: relative;
+  position: relative;
 
-    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 3s; /* Firefox < 16 */
-     -ms-animation: fadein 3s; /* Internet Explorer */
-      -o-animation: fadein 3s; /* Opera < 12.1 */
-         animation: fadein 3s;
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+  -ms-animation: fadein 3s; /* Internet Explorer */
+  -o-animation: fadein 3s; /* Opera < 12.1 */
+  animation: fadein 3s;
 
-    height: 90vh;
-    min-height: -webkit-fill-available;
+  height: 90vh;
+  min-height: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform-origin: center center;
+
+  .content {
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    transform-origin: center center;
+    position: relative;
+    text-align: center;
 
-    .content {
-        display: flex;
+    z-index: 10;
 
-        justify-content: center;
-        align-items: center;
-
-        position: relative;
-        text-align: center;
-
-        z-index: 10;
-
-        #title {
-            margin-right: 17vw;
-        }
-
-        #emoji_loading {
-            font-size: 38pt;
-            animation: spin 0.75s infinite linear;
-        }
-
-        #credits {
-            margin-left: 3em;
-
-            position: absolute;
-            margin-top: 22em;
-
-            color: $text-color;
-
-            #large {
-                font-size: 12pt;
-            }
-
-            #small {
-                margin-top: 1em;
-
-                font-size: 10pt;
-            }
-        }
-
-        #hungry_gif {
-            margin-left: 20vw;
-
-            width: 12em;
-            border-radius: 2em;
-        }
+    #title {
+      margin-right: 17vw;
     }
+
+    #emoji_loading {
+      font-size: 38pt;
+      animation: spin 0.75s infinite linear;
+    }
+
+    #credits {
+      margin-left: 3em;
+
+      position: absolute;
+      margin-top: 22em;
+
+      color: $text-color;
+
+      #large {
+        font-size: 12pt;
+      }
+
+      #small {
+        margin-top: 1em;
+
+        font-size: 10pt;
+      }
+    }
+
+    #hungry_gif {
+      margin-left: 20vw;
+
+      width: 12em;
+      border-radius: 2em;
+    }
+  }
 }
 
 @keyframes spin {
-    0%  {-webkit-transform: rotate(0deg);}
-    100% {-webkit-transform: rotate(360deg);}
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: $medium) {
-    .landing {
-        .content {
-            display: flex;
+  .landing {
+    .content {
+      display: flex;
 
-            flex-direction: column;
+      flex-direction: column;
 
-            justify-content: center;
-            align-items: center;
+      justify-content: center;
+      align-items: center;
 
-            z-index: 10;
+      z-index: 10;
 
-            #title {
-                text-align: center;
-                margin-right: 0;
-            }
+      #title {
+        text-align: center;
+        margin-right: 0;
+      }
 
-            #credits {
-                margin-top: 40em;
-                margin-left: 0;
-            }
+      #credits {
+        margin-top: 40em;
+        margin-left: 0;
+      }
 
-            #hungry_gif {
-                margin-left: 0;
-            }
-        }
+      #hungry_gif {
+        margin-left: 0;
+      }
     }
+  }
 }

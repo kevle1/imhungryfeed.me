@@ -1,66 +1,70 @@
-$primary-color: #FA4B0C;
-$secondary-color: #FFFFFF;
+$primary-color: #fa4b0c;
+$secondary-color: #ffffff;
 
 body {
-    margin: 0;
+  margin: 0;
 
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
-    overflow-x: hidden;
+  overflow-x: hidden;
 
-	font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @font-face {
-    font-family: cby;
-    src: url(../fonts/cby-blk.woff2);
+  font-family: cby;
+  src: url(../fonts/cby-blk.woff2);
 }
 
 .heading {
-    font-family: 'cby', sans-serif;
-    font-size: 36pt;
+  font-family: "cby", sans-serif;
+  font-size: 36pt;
 
-    color: $primary-color;
-    text-align: left;
+  color: $primary-color;
+  text-align: left;
 
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 ::selection {
-    color: $secondary-color;
-    background: $primary-color;
+  color: $secondary-color;
+  background: $primary-color;
 }
 
 ::-moz-selection {
-    color: $secondary-color;
-    background: $primary-color;
+  color: $secondary-color;
+  background: $primary-color;
 }
 
 .loadingTransition-enter {
-    opacity: 0;
-    transform: scale(0.9);
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 .loadingTransition-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 200ms, transform 200ms;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 200ms,
+    transform 200ms;
 }
 
 .loadingTransition-exit {
-    opacity: 1;
+  opacity: 1;
 }
 
 .loadingTransition-exit-active {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 200ms, transform 200ms;
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 200ms,
+    transform 200ms;
 }

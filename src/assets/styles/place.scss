@@ -3,128 +3,127 @@ $secondary-color: #5c5c5c;
 $medium: 900px;
 
 .placeCard {
-    z-index: 15;
+  z-index: 15;
+  position: absolute;
+
+  text-align: left;
+  // top: 0px; // Use for right alignment
+  // right: 0px;
+
+  max-width: 25em;
+  min-width: 19em;
+  // padding: 2em 2em 1em 2em; // Use for right alignment
+  padding: 0 2em 1em 1em;
+
+  border-bottom-right-radius: 1em;
+
+  background-color: white;
+
+  animation: slideIn 1s forwards;
+
+  div {
+    margin-top: 0.1em;
+  }
+
+  a {
+    text-decoration: none;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+
+  #arrow {
+    width: 3em;
+    transform: rotate(-100deg);
+
+    margin-top: -3em;
+    float: right;
+  }
+
+  .placeName {
+    color: $primary-color;
+
+    font-family: "cby", sans-serif;
+    font-size: 32pt;
+  }
+
+  .placeAddress {
+    margin-top: 0.5em;
+    color: gray;
+  }
+
+  .placePrice {
+    margin-left: 0.5em;
+    white-space: pre;
+    color: gray;
+  }
+
+  .placeRating {
+    color: $secondary-color;
+
+    #rating {
+      margin-right: 0.4em;
+    }
+
+    #ratingCount {
+      margin-left: 0.4em;
+      color: lightgray;
+    }
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: $medium) {
+  .placeCard {
     position: absolute;
+    bottom: 7em;
 
-    text-align: left;
-    // top: 0px; // Use for right alignment
-    // right: 0px;
+    max-width: 10em;
+    min-width: 300px;
+    text-align: center;
 
-    max-width: 25em;
-    min-width: 19em;
-    // padding: 2em 2em 1em 2em; // Use for right alignment
-    padding: 0 2em 1em 1em;
+    left: 50%;
+    margin-left: -10.5em;
 
-    border-bottom-right-radius: 1em;
+    padding: 0.5em 1em 1em 1em;
+
+    border-radius: 1em;
 
     background-color: white;
 
     animation: slideIn 1s forwards;
 
     div {
-        margin-top: 0.1em;
+      margin-top: 0.1em;
     }
 
     a {
-        text-decoration: none;
+      text-decoration: none;
 
-        :hover {
-            text-decoration: underline;
-        }
+      :hover {
+        text-decoration: underline;
+      }
     }
 
     #arrow {
-        width: 3em;
-        transform: rotate(-100deg);
-
-        margin-top: -3em;
-        float: right;
+      display: none;
     }
 
     .placeName {
-        color: $primary-color;
-
-        font-family: 'cby', sans-serif;
-        font-size: 32pt;
+      font-size: 24pt;
     }
 
     .placeAddress {
-        margin-top: 0.5em;
-        color: gray;
+      font-size: 10pt;
     }
-
-    .placePrice {
-        margin-left: 0.5em;
-        white-space: pre;
-        color: gray;
-    }
-
-    .placeRating {
-        color: $secondary-color;
-
-        #rating {
-            margin-right: 0.4em;
-        }
-
-        #ratingCount {
-            margin-left: 0.4em;
-            color: lightgray;
-        }
-    }
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-900px);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@media screen and (max-width: $medium) {
-
-    .placeCard {
-        position: absolute;
-        bottom: 7em;
-
-        max-width: 10em;
-        min-width: 300px;
-        text-align: center;
-
-        left: 50%;
-        margin-left: -10.5em;
-
-        padding: 0.5em 1em 1em 1em;
-
-        border-radius: 1em;
-
-        background-color: white;
-
-        animation: slideIn 1s forwards;
-
-        div {
-            margin-top: 0.1em;
-        }
-
-        a {
-            text-decoration: none;
-
-            :hover {
-                text-decoration: underline;
-            }
-        }
-
-        #arrow {
-            display: none;
-        }
-
-        .placeName {
-            font-size: 24pt;
-        }
-
-        .placeAddress {
-            font-size: 10pt;
-        }
-    }
+  }
 }
